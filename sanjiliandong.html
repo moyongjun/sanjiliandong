@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>省市县三级两栋json版</title>
+  <!-- 引入jQuery-->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
+  <!--映入bootstrap-->
+<!--  <script src="js/bootstrap.js"></script>-->
+  <!--三级联动脚本及json数据-->
+  <script src="js/distpicker.data.js"></script>
+  <script src="js/distpicker.js" ></script>
+
+  <script src="js/main.js"></script>
+</head>
+<body>
+
+<!--省市县三级联动下拉选择框-->
+<div id="editorContext" class="info-wapper">
+
+  <div class="info-box clearfix">
+    <label class="pull-left">城市</label>
+    <div id="three_baba" data-toggle="distpicker" class="pull-left">
+      <select id="three_province"></select>
+      <select id="three_city"></select>
+      <select id="three_country"></select>
+    </div>
+    <label class="pull-left">当前位置是：</label><span id="addMsg" >当前位置是：</span>
+  </div>
+
+
+  <div id="user_center_submit" class="info-box clearfix"><label id="submit_sgy" class="pull-left" onclick="showAddrMsg()">提交</label>
+  </div>
+</div>
+
+<script>
+
+$(function () {
+
+    showAddrMsg();
+
+
+//当选择框改变后，显示新的地址信息
+    $('#three_province').change(
+        showAddrMsg
+    );
+    $('#three_city').change(
+        showAddrMsg
+    );
+    $('#three_country').change(
+        showAddrMsg
+    );
+});
+
+function showAddrMsg() {
+    //获取省市县三级联动的值
+    var province = $("#three_province option:selected");
+    console.log(province);
+    var city = $("#three_city option:selected");
+    console.log(city);
+    var country = $("#three_country option:selected");
+    console.log(country);
+    //拼接数据
+    var location = province.val()+"-"+city.val()+"-"+country.val();
+    // alert('location='+location);
+    $('#addMsg').text(location);
+}
+
+</script>
+</body>
+</html>
